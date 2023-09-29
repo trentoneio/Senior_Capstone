@@ -11,5 +11,5 @@
 # Start python module to read output from arduino
 python3 finger_auth.py
 # Upload an empty file to the arduino to turn off fingerprint scanner and conserve power
-./upload_to_arduino.sh /home/pi/Documents/F2023Capstone/Build/nothing/nothing.ino.hex
+./upload_to_arduino.sh /home/pi/Documents/F2023Capstone/Build/snub/snub.ino.hex
 
