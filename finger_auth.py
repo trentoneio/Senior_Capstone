@@ -19,6 +19,8 @@ print("Monitoring serial")
 try:
     # Loop until an authenticated finger is read
     while True:
+        # Sleep momentarily to reduce CPU utilizaiton
+        time.sleep(0.01)
         # Check if data is received from arduino
         if ser.in_waiting > 0:
             # read a line from the serial monitor
