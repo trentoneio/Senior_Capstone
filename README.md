@@ -8,6 +8,7 @@ I myself am responsible for all of the code in this project. My partners are res
 * 2018 MacBook Pro
 * Raspberry Pi 3 Model B
 * Arduino Uno R3
+* 1 LED
 * Monitor for RPi GUI (this could also be done via vnc)
 * Ethernet Crossover Cable
 * External Network Interface Card

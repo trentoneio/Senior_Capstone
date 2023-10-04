@@ -14,6 +14,11 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
+/****************************************************
+Some of the following features edits to fit the Smart_Mailbox
+project.
+ ****************************************************/
+
 
 #include <Adafruit_Fingerprint.h>
 
@@ -34,6 +39,16 @@ SoftwareSerial mySerial(2, 3);
 
 
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
+
+int LED_PIN = 8;
+void LED_Flash(){
+   for (int i = 0; i <= 2; i++){
+   digitalWrite(LED_PIN, HIGH);
+   delay(100);
+   digitalWrite(LED_PIN, LOW);
+   delay(100);
+  }
+}
 
 void setup()
 {
@@ -71,6 +86,10 @@ void setup()
     Serial.println("Waiting for valid finger...");
       Serial.print("Sensor contains "); Serial.print(finger.templateCount); Serial.println(" templates");
   }
+
+  // LED Pin Setup  
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, LOW);
 }
 
 void loop()                     // run over and over again
@@ -131,6 +150,8 @@ uint8_t getFingerprintID() {
     Serial.println("Communication error");
     return p;
   } else if (p == FINGERPRINT_NOTFOUND) {
+    LED_Flash();
+    LED_Flash();
     Serial.println("Did not find a match");
     return p;
   } else {
@@ -139,6 +160,7 @@ uint8_t getFingerprintID() {
   }
 
   // found a match!
+  LED_Flash();
   Serial.print("Found ID #"); Serial.print(finger.fingerID);
   Serial.print(" with confidence of "); Serial.println(finger.confidence);
 
