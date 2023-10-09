@@ -41,11 +41,15 @@ SoftwareSerial mySerial(2, 3);
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
 int LED_PIN = 8;
+int Buzzer_Pin = 7;
+
 void LED_Flash(){
    for (int i = 0; i <= 2; i++){
    digitalWrite(LED_PIN, HIGH);
+   tone(Buzzer_Pin,500);
    delay(100);
    digitalWrite(LED_PIN, LOW);
+   noTone(Buzzer_Pin);
    delay(100);
   }
 }
@@ -90,6 +94,9 @@ void setup()
   // LED Pin Setup  
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, LOW);
+
+  // Buzzer Pin Setup
+  pinMode(Buzzer_Pin, OUTPUT);
 }
 
 void loop()                     // run over and over again
