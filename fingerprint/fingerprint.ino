@@ -15,8 +15,10 @@
  ****************************************************/
 
 /****************************************************
-Some of the following features edits to fit the Smart_Mailbox
+The following features edits to fit the Smart_Mailbox
 project.
+
+Edits made by Trenton Foster
  ****************************************************/
 
 
@@ -40,8 +42,8 @@ SoftwareSerial mySerial(2, 3);
 
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
-int LED_PIN = 8;
-int Buzzer_Pin = 7;
+int LED_PIN = 5;
+int Buzzer_Pin = 4;
 
 void LED_Flash(){
    for (int i = 0; i <= 2; i++){
