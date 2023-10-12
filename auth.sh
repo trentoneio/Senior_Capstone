@@ -33,13 +33,13 @@ case $AUTH_EXIT_STATUS in
         # Start python module to read output from arduino
         python3 auth.py
         AUTH_EXIT_STATUS=$?
+
+        # If a user is authenticated, open the mailbox
+        if [[ "$AUTH_EXIT_STATUS" == "0" ]]; then
+            open_mailbox
+        fi
         ;;
 esac
 
-# If a user is authenticated, open the mailbox
-if [[ "$AUTH_EXIT_STATUS" == "0" ]]; then
-    open_mailbox
-fi
-
-# continuously run this script
+# continuously run this script to allow for more open attempts
 ./auth.sh

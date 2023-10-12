@@ -14,10 +14,13 @@ Edits made by Trenton Foster
  
 #define SS_PIN 10
 #define RST_PIN 9
-int LED_PIN = 5;
-int Buzzer_Pin = 4;
+#define LED_PIN = 5;
+#define Buzzer_Pin = 4;
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
 
+/**************************
+ "Flash" pins 4 and 5 to logic high
+***************************/
 void notify(){
   digitalWrite(LED_PIN, HIGH);
   tone(Buzzer_Pin,500);
@@ -66,7 +69,8 @@ void loop()
   content.toUpperCase();
   // Notify user of RFID read
   notify();
-  if (content.substring(1) == "B8 B1 8C 12") //change here the UID of the card/cards that you want to give access
+  // If a 'normal user' accesses with their RFID tag
+  if (content.substring(1) == "B8 B1 8C 12")
   {
     // Notify user of user RFID read (notify() ran 2 times total)
     notify();
@@ -75,7 +79,8 @@ void loop()
     // Delay to save RPi resources
     delay(1000);
   }
-
+  
+  // If an admin accesses with their RFID tag
    else if (content.substring(1) == "72 05 95 51")
    {
     Serial.println("Master access");
@@ -83,6 +88,8 @@ void loop()
     // Delay to save RPi resources
     delay(1000);
    }
+
+  // If a non authorized RFID tag is used
  else   {
     Serial.println(" Access denied");
     // Notify user of incorrect RFID read (notify() ran 3 times total)

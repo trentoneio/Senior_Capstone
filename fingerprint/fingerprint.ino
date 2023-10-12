@@ -42,9 +42,13 @@ SoftwareSerial mySerial(2, 3);
 
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
-int LED_PIN = 5;
-int Buzzer_Pin = 4;
+#define LED_PIN = 5;
+#define Buzzer_Pin = 4;
 
+
+/**************************
+ "Flash" pins 4 and 5 to logic high three times
+***************************/
 void LED_Flash(){
    for (int i = 0; i <= 2; i++){
    digitalWrite(LED_PIN, HIGH);
@@ -159,6 +163,7 @@ uint8_t getFingerprintID() {
     Serial.println("Communication error");
     return p;
   } else if (p == FINGERPRINT_NOTFOUND) {
+    // Flash led 6 times to notify user of non matching fingerprint
     LED_Flash();
     LED_Flash();
     Serial.println("Did not find a match");
@@ -169,6 +174,7 @@ uint8_t getFingerprintID() {
   }
 
   // found a match!
+  // Flash led 3 times to notify user of matching fingerprint
   LED_Flash();
   Serial.print("Found ID #"); Serial.print(finger.fingerID);
   Serial.print(" with confidence of "); Serial.println(finger.confidence);
