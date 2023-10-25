@@ -7,7 +7,7 @@
 #########################
 
 function open_mailbox(){
-    ./upload_to_arduino.sh /private/tmp/sshfs/home/pi/Documents/F2023Capstone/Build/open_solenoid/open_solenoid.ino.hex
+    ./upload_to_arduino.sh /home/pi/Documents/F2023Capstone/Build/open_servo/open_servo.ino.hex
     echo "Mailbox unlocked for 30s"
     sleep 35
     echo "Mailbox locked"
@@ -33,13 +33,13 @@ case $AUTH_EXIT_STATUS in
         # Start python module to read output from arduino
         python3 auth.py
         AUTH_EXIT_STATUS=$?
-
-        # If a user is authenticated, open the mailbox
-        if [[ "$AUTH_EXIT_STATUS" == "0" ]]; then
-            open_mailbox
-        fi
         ;;
 esac
 
-# continuously run this script to allow for more open attempts
+# If a user is authenticated, open the mailbox
+if [[ "$AUTH_EXIT_STATUS" == "0" ]]; then
+    open_mailbox
+fi
+
+# continuously run this script
 ./auth.sh

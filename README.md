@@ -18,9 +18,7 @@ development on this page.
 * Piezo Buzzer
 * MFRC522 (RFID Read/Write)
 * DIYmall Optical Fingerprint Reader Sensor Module
-* Adafruit Medium Push-Pull Solenoid - 5V or 6V (NOTE: This is currently not functional. The
-current provided by the arduino is not enough to power the solenoid. However, the code to operate
-the solenoid is included in the project.)
+* Micro Servo SG90
 #### Dev Tools
 * Monitor for RPi GUI (this could also be done via vnc)
 * Ethernet Crossover Cable (to establish LAN connection to RPi)
