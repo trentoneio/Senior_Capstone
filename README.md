@@ -40,4 +40,4 @@ development on this page.
 
 ## Usage
 After installing the required Python packages on your RPi and the required Arduino packages on your
-arduino, you can run the project using auth.sh.
+arduino, you can run the project by adapting the paths in auth.sh to your project environment and then running auth.sh.
